@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #canvas{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+
+
+    <script>
+        // 基本图形绘制 
+        // 1绘制矩形 矩形是唯一一个可以绘制的形状  fillRect(x,y,w,h)
+        // 2绘制一个描边的矩形   strokeRect(x,y,w,h)
+        // 清除一个矩形区域 ctx.clearRect(x,y,w,h)
+        var canvas=document.querySelector('#canvas');
+        // 获取画笔 画笔是2d的 
+        var ctx=canvas.getContext('2d');
+        // ctx.fillStyle='blue';
+
+        canvas.width=1000;
+        canvas.height=600;
+        ctx.fillRect(100,100,100,100);
+
+        ctx.strokeRect(400,100,100,100);
+       ctx.clearRect(150,150,100,100);
+
+
+
+        // // 根据原点和宽高绘制矩形轨迹
+        // ctx.rect(50,50,100,100)
+        // // 设置描边的颜色
+        // ctx.strokeStyle = "red"
+        // // 设置直线宽度
+        // ctx.lineWidth = 2
+        // // 开始绘制描边
+        // ctx.stroke()
+
+        // // 绘制填充的矩形
+        // // 开启新路径
+        // ctx.beginPath()
+        // // 根据原点和宽高绘制矩形轨迹
+        // ctx.rect(200,50,100,100)
+        // // 设置填充颜色
+        // ctx.fillStyle = "blue"
+        
+        // // 开始填充
+        // ctx.fill()
+
+    </script>
+</html>

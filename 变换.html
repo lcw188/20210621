@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        /* canvas 是一个可以使用脚本(JS)在其中绘制图形的html元素
+                  默认宽度为 300*150
+
+          */
+        canvas{
+            border: 1px solid red;
+            /* width: 600px; */
+        }
+    </style>
+
+<body>
+    <canvas id="canvas">
+        您的浏览器不支持canvas IE9以下不支持
+    </canvas>
+
+    <script>
+        // 获取canvas元素(画布)
+        var canvas=document.querySelector("#canvas");
+        // 获取画笔 画笔是2d的 
+        var ctx=canvas.getContext('2d');
+        canvas.width=1000;
+        canvas.height=700;
+
+        // 与CSS的2D转换类似
+            // 1.平移 ctx.translate(x,y) 注意 原有内容不会受变换影响 需要用到保存和恢复 ctx.save() ctx.restore()
+            // 2.旋转 ctx.rotate(angle)
+            // 3.缩放 ctx.scale(x,y)
+
+        ctx.fillRect(0,0,100,100);    
+        ctx.translate(100,100);
+        ctx.fillStyle='#bfa';
+        ctx.fillRect(0,0,100,100);   
+    </script>
+    
+</body>

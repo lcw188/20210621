@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        /* canvas 是一个可以使用脚本(JS)在其中绘制图形的html元素
+                  默认宽度为 300*150
+
+          */
+        canvas{
+            border: 1px solid red;
+            /* width: 600px; */
+        }
+    </style>
+
+<body>
+    <canvas id="canvas">
+        您的浏览器不支持canvas IE9以下不支持
+    </canvas>
+
+    <script>
+        // 获取canvas元素(画布)
+        var canvas=document.querySelector("#canvas");
+        // 获取画笔 画笔是2d的 
+        var ctx=canvas.getContext('2d');
+        canvas.width=1000;
+        canvas.height=600;
+
+        // 视频绘制其实是一帧一帧的绘制
+        
+
+
+
+    </script>
+    
+</body>
+</html>

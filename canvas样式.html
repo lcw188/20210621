@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        /* canvas 是一个可以使用脚本(JS)在其中绘制图形的html元素
+                  默认宽度为 300*150
+
+          */
+        canvas{
+            border: 1px solid red;
+            /* width: 600px; */
+        }
+    </style>
+
+<body>
+    <canvas id="canvas">
+        您的浏览器不支持canvas IE9以下不支持
+    </canvas>
+
+    <script>
+        // 获取canvas元素(画布)
+        var canvas=document.querySelector("#canvas");
+        // 获取画笔 画笔是2d的 
+        var ctx=canvas.getContext('2d');
+        canvas.width=600;
+        canvas.height=300;
+        // 绘制矩形 
+        // 以画布左上角为基准 建立一个二维坐标系 绘制，50 50 10(长) 50(宽)
+        ctx.fillStyle="#bfa"
+
+
+        // 1.颜色  也支持16进制和rgb(0,0,255,.5)
+        //    1.fillStyle=color strokeStyle=color
+
+        // 2.透明度 .globalAlpha 0-1
+        ctx.globalAlpha=0.5;
+
+        // 3.线型 
+        //    线条宽 lineWidth= 
+        //    两端样式 lineCap= butt默认值 round两端圆形 sauare 方形会增加线的宽度
+        //    拼接样式 
+        //    
+
+        
+
+        ctx.lineWidth=5
+        ctx.lineCap='butt'
+        ctx.beginPath();
+        ctx.moveTo(100,100);
+        ctx.lineTo(250,100);
+        ctx.closePath();
+        ctx.stroke();
+// 4 渐变
+        var linearGrad=ctx.createLinearGradient(100,100,300,300);
+            linearGrad.addColorStop(0,'red');
+            linearGrad.addColorStop(.2,'skyblue');
+            linearGrad.addColorStop(.7,'green');
+            linearGrad.addColorStop(1,'pink');
+        ctx.fillStyle=linearGrad;    
+        ctx.fillRect(100,100,100,100)
+    </script>
+</body>

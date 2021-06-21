@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="1000px" height="500px" style="border:1px solid black;background:black"></canvas>
+
+  <script type="text/javascript">
+      var canvas=document.getElementById("canvas");
+      var ctx=canvas.getContext("2d");
+      var width=canvas.width;
+      var height=canvas.height;
+    
+
+      function Qiu(ctx,x,y){
+        this.ctx=ctx;
+          this.x=x;
+          this.y=y;
+          this.speedX=Math.random()*4-2;
+          this.speedY=Math.random()*2-13;
+          this.zhongli=0.2;
+          this.banjing=6;
+          this.color=createColor()
+        this.draw()
+      }
+      Qiu.prototype.draw=function(){
+        this.ctx.beginPath();
+        this.ctx.fillStyle=this.color;
+        this.ctx.arc(this.x,this.y,this.banjing,0,2*Math.PI,false);
+        this.ctx.fill();
+      }
+      Qiu.prototype.update=function(){
+        this.x+=this.speedX;
+
+        this.speedY+=this.zhongli;
+        if(this.speedY>0){
+
+          this.banjing-=0.2
+          if(this.banjing<1){
+            this.banjing=1
+          }
+          this.speedY+=this.zhongli;
+          this.y+=this.speedY
+        }else{
+          this.banjing+=0.2
+          if(this.banjing>10){
+            this.banjing=10
+          }
+
+          this.y+=this.speedY
+        }
+
+        this.draw()
+      }
+      var arr=[]
+     setInterval(() => {
+      ctx.clearRect(0,0,width,height)
+     
+      ctx.fillStyle="yellow";
+      ctx.font="30px Verdana";
+      ctx.textAlign="center";
+      var qiu= new Qiu(ctx,width/2,height-30);
+    
+      for(var i=0;i<arr.length;i++){
+        arr[i].update()
+      }
+      arr.push(qiu);
+      if(arr.length>100){
+        arr.shift()
+      }
+      //console.log(arr.length)
+     
+     }, 15);
+     function createColor(){
+    //   return "rgb(255,255,0)";
+       return "rgb("+Math.floor(Math.random()*200)+","+Math.floor(Math.random()*200)+","+Math.floor(Math.random()*200)+")";
+     }
+   
+  </script>
+</body >
+
+</html>

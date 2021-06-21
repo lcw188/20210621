@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        /* canvas 是一个可以使用脚本(JS)在其中绘制图形的html元素
+                  默认宽度为 300*150
+
+          */
+        canvas{
+            border: 1px solid red;
+            /* width: 600px; */
+        }
+    </style>
+
+<body>
+    <canvas id="canvas">
+        您的浏览器不支持canvas IE9以下不支持
+    </canvas>
+
+    <script>
+        // 获取canvas元素(画布)
+        var canvas=document.querySelector("#canvas");
+        // 获取画笔 画笔是2d的 
+        var ctx=canvas.getContext('2d');
+
+        // 绘制矩形 
+        // 以画布左上角为基准 建立一个二维坐标系 绘制，50 50 10(长) 50(宽)
+        ctx.fillRect(50,50,100,50)
+
+        // canvas 设置画布宽高问题 如果在style 中绘制 会在画布中将canvas及图形进行缩放
+        // 会导致内容模糊  尽量在canvas标签中设置宽高
+        //1. <canvas width="600" height="150"></canvas>
+        //2. canvas.width=600;
+        // canvas.height=150;
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #canvas{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+
+
+    <script>
+        // 基本图形绘制 
+        // 1绘制矩形 矩形是唯一一个可以绘制的形状  fillRect(x,y,w,h)
+        // 2绘制一个描边的矩形   strokeRect(x,y,w,h)
+        // 清除一个矩形区域 ctx.clearRect(x,y,w,h)
+        var canvas=document.querySelector('#canvas');
+        // 获取画笔 画笔是2d的 
+        var ctx=canvas.getContext('2d');
+        // ctx.fillStyle='blue';
+
+        canvas.width=1000;
+        canvas.height=600;
+     
+        // // 绘制填充的矩形
+        // // 开启新路径
+        ctx.beginPath();
+        ctx.moveTo (50,50);       //设置起点状态
+        ctx.lineTo (150,50);       //设置末端状态
+        ctx.lineTo (100,100);       //设置末端状态
+        ctx.lineTo (50,50);       //设置末端状态
+        ctx.strokeStyle = 'red';    //线条颜色
+        ctx.stroke();               //进行绘制
+        // ctx.fill();
+        ctx.closePath();
+
+    </script>
+</html>

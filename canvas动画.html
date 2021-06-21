@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        /* canvas 是一个可以使用脚本(JS)在其中绘制图形的html元素
+                  默认宽度为 300*150
+          */
+        canvas{
+            border: 1px solid red;
+            margin: 0 auto;/*居中*/
+            display: block; /*转换为块级元素居中才会生效*/
+            /* width: 600px; */
+        }
+    </style>
+
+<body>
+    <canvas id="canvas">
+        您的浏览器不支持canvas IE9以下不支持
+    </canvas>
+
+    <script>
+        // 获取canvas元素(画布)
+        var canvas=document.querySelector("#canvas");
+        // 获取画笔 画笔是2d的 
+        var ctx=canvas.getContext('2d');
+        canvas.width=600;
+        canvas.height=600;
+        
+        var cw=canvas.width; /*获取canvas的宽高*/
+        var ch=canvas.height;
+        // console.log(cw,ch)
+
+        //小球:每个小球有独立的数据
+        // 设置定时器
+        // 清屏
+
+        var bubles=[];
+
+        // 创建小球对象  ctx.arc(x,y,r,0,2*Math.PI,false);
+        // ctx.arc()
+        function Bubble(ctx,x,y){
+            this.ctx=ctx;
+            this.x=x;
+            this.y=y;
+            this.r=10; /*小球半径*/
+            this.speedx=Math.random()*4-2;//水平方向移动速度(-2~2)
+            this.speedy=Math.random()*2-10;//垂直方向移动速度(-10~-8)
+            this.color=getRandomColor();     //颜色肯定是随机生成的 需要定义函数控制颜色变换
+            this.gy=0.1; //垂直方向的速度控制因素(加速度)
+            this.draw(); /*只调用一次绘制 就只能绘制一次 但是需要调用多次绘制多个小球*/
+        }
+
+        // 随机生成小球颜色的函数
+        function getRandomColor(){
+            return "rgb("+Math.round(Math.random()*155+100)+","
+                         +Math.round(Math.random()*155+100)+","
+                         +Math.round(Math.random()*155+100)+
+                      ")"
+        }
+
+        // 打印下颜色格式是否正确
+        // console.log(getRandomColor());
+
+        // 绘制小球的函数
+        Bubble.prototype.draw=function(){
+            this.ctx.beginPath();
+            this.ctx.fillStyle=this.color;
+            this.ctx.arc(this.x,this.y,this.r,0,2*Math.PI,false);
+            this.ctx.fill();  /*绘制小球*/
+            this.ctx.closePath();
+        }
+
+        Bubble.prototype.update=function(){
+            this.x+=this.speedx;
+            this.speedy+=this.gy;/*垂直方向速度改变公式*/
+            this.y+=this.speedy;
+            this.draw(); /*调用绘制小球的函数*/
+        }
+
+        // 设置定时器
+        var timer=null;
+        var counter=0;
+
+        function start(){
+            // 开启定时器
+            timer=setInterval(function(){
+                counter++;
+                ctx.clearRect(0,0,cw,ch);/*每次清屏重绘 全部清空canvas*/
+
+                if(counter%1==0){
+                bubles.push(new Bubble(ctx,290,560)); /* 每逢5 就先产生一个小球对象*/
+                // 更新所有小球位置
+                for (let buble of bubles) {
+                    buble.update();
+                }
+                // 当小球数量达到一定数量后，删除最前面的小球
+            }
+            //console.log(bubles);/*打印小球数组*/
+            },1000/60);
+        }
+
+        start();
+    </script>
+</body>
